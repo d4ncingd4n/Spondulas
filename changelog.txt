@@ -1,0 +1,73 @@
+1.0.1
+===============
+* Documentation changes (added README and help.txt)
+
+1.0.0
+===============
+* Put help screen options in alphabetical order
+* Monitor mode and persistent mode no longer need a value passed on the commandline
+* Referrer detection allows spaces
+* Formatting changes related to referrer detection
+* Adopted the FreeBSD license
+
+b2012-08-13
+============
+* Created function to demangle bytes objects
+
+b2012-08-12
+============
+* Added autolog mode
+* Changed 'ToDo' listing
+* Fixed bug with finding cookies if the file was decoded
+
+b2012-07-29
+============
+* Added Monitor Mode to track changing IP address or web content
+* Restructured global variable organization
+* Added Comments to document functions
+* Changed formating of redirection detected message
+* Updated help screens
+
+b2012-07-23
+============
+* Deleted "Dead" code
+* Added automatic decoding of gzip files
+* Added automatic dechunking of file
+
+b2012-07-21
+============
+* Added the -rf option to allow commandline entry of the referrer field.
+* Corrected Mozilla Compatible version number for IE
+* Added support for IE 10 and 10.6
+* Added support for Firefox 10, 11, 12, 14,and 15
+* Added support for Ajax requests
+
+b2012-05-26
+-----------
+* Modified to allow non-standard ports
+* Corrected the URL when the URL is passed as a commandline parameter
+* Removed starting apostrophe when the URL is passed as a commandline parameter
+
+b2012-04-21
+-----------
+* Added the -t timeout option for customized timeout values
+* Began including a cx_freeze generated executable
+* Added a README.txt
+* Added a Changelog
+
+
+b2012-04-18
+-----------
+* Added "'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'" header
+* Added "Accept-Language: en-us,en;q=0.5" header
+* Added "Accept-Encoding: gzip, deflate'" header
+* Corrected End-of-line from "LF" to "CR/LF"
+
+
+b2012-03-13
+-----------
+* Parsing Commandline options with argparse
+* Began assigning version numbers as it was no longer "alpha" software
+* Added an input mode to parse html files sent via phishing e-mails.
+* Added Socks 5 support
+

@@ -1,0 +1,128 @@
+http://sourceforge.net/projects/spondulas/
+
+Spondulas
+ 
+Spondulas 
+ *Purpose
+ *Features
+ *Options 
+	-a, --autolog
+ 	-h, --help
+ 	-hh
+ 	-i, --input
+ 	-l, --link
+ 	-m, --monitor
+ 	-ms, --monitor-seconds
+ 	-o, --output
+ 	-p, --persistent
+ 	-r, --request
+ 	-ref, --referrer
+ 	-s, --socksport
+ 	-t, --timeout
+ 	-u, --url
+ 	-v, --version
+ 
+ *Basic Mode
+ *Input Mode
+ *Monitor Mode
+ *Persistent Mode
+ 
+
+Purpose
+ 
+Spondulas is a web browser emulator and link parser. It is useful for investigating phishing e-mails or suspicious websites. It captures the raw output from the site, performs any post processing needed, and outputs a file containing the categorized links discovered while parsing the file.
+ 
+Features
+ •Support for GET and POST methods
+ •Parsing of retrieved pages to extract and categorize links
+ •Support for HTTP and HTTPS methods
+ •Support for non-standard port numbers
+ •Support for the submission of cookies
+ •Support for SOCKS5 proxy using TOR
+ •Support for pipe-lining (AJAX)
+ •Monitor mode to poll a website looking for changes in DNS or body content
+ •Input mode to parse local HTML files, e.g., e-mailed forms
+ •Automatic conversion of GZIP and Chunked encoding
+ •Automatic IP address Look-up
+ •Selection or generation of User Agent Strings
+ •Automatic creation of an investigation file
+ 
+Options
+ 
+-a, --autolog
+ 
+Autolog mode creates an investigation file in the current directory. The current date is used as the name for the investigation file. As each URL is retrieved, it will be inserted into the investigation file in a hierarchy according to referrer. The host IP address and any cookies set on the page are also recorded for each entry. 
+
+-h, --help
+ 
+Help mode displays the command-line parameters accepted by the program.
+ 
+-hh
+ 
+Verbose help is called using the -hh parameter. Verbose help is menu driven and gives additional help on selected topics.
+ 
+-i, --input
+ 
+Input mode is used for parsing an offline HTML file. Input mode will automatically decompress pages compressed with GZIP and de-chunk files that used the chunked transfer encoding. After the file has been de-chunked and gzipped, it will be parsed for links. The parsed links are sorted and output to a links file.
+ 
+-l, --link
+ 
+This option defines the name for the links file. The links file contains a header and a categorized listing of links parsed from the HTML file. If this option is not defined, a default file-name will be generated based on the output file name. 
+
+-m, --monitor
+ 
+This option enables monitor mode. Monitor mode allow a URL to be monitored for changes over time. This option retrieves the HTML page and computes a hash of the body contents. After the designated sleep time, the request is made again. If either the host IP address or the page contents change between requests (ignoring the HTTP header), the output is saved in a file name with the time-date stamp. If the -m option is used without a -ms option to define the sleep seconds, an interactive menu will be displayed allowing the desired sleep time to be computed.
+ 
+-ms, --monitor-seconds
+ 
+This option allows you to specify the sleep time for monitor mode.
+ 
+-o, --output
+ 
+This option defines the output file. The output file stores the raw data retrieved from requesting a URL. Some pages are compressed with gzip or use the chunked transfer encoding. If gzip compression or chunked transfer encoding is detected, a decoded file will be automatically created.
+ 
+-p, --persistent
+ 
+This option allows multiple requests to be submitted over the same TCP/IP connection. The request type can differ between the initial request and the subsequent requests. For example, the first request can be a GET request with a POST request (including post variables) as the second request. Persistent mode allows the emulation of AJAX style requests.
+ 
+-r, --request
+ 
+This option is used to specify the request type. Generally speaking, POST requests are used for webpages that request user input. Post requests can have both visible fields and hidden variables. Get requests are usually used for ordinary page requests. Some malicious web pages will use post requests to avoid automated analysis. The default requests type is GET.
+ 
+-ref, --referrer
+ 
+This option is used to specify the referrer page. If the link was received in a phishing e-mail, the referrer will be blank for the first request. The subsequent pages will have a referrer. Malicious web sites will often provide different responses depending on the referrer field to avoid analysis.
+ 
+-s, --socksport
+ 
+This option allows the use of a SOCKS5 proxy such as TOR to conceal your location. TOR uses port 9050 by default.
+ 
+-t, --timeout
+ 
+This option is used to set the number of seconds the TCP connection is kept open. Some sites use a longer timeout to avoid analysis. The default timeout is 30 seconds.
+ 
+-u, --url
+ 
+This option is used to specify the target URL. Both http and https connections are supported. Non-standard ports are specified by using a colon and the port number following the fully qualified domain name. e.g. http://www.example.com:8080/index.html
+ 
+-v, --version
+ 
+Prints the program version and exits.
+ 
+Basic Mode
+ 
+Starting the program without options starts the program in interactive mode. You will be prompted to select a user-agent, specify URLs, input cookies, and specify output files. After enough information is supplied, the program will retrieve the target URL using a GET request and parse the results. Command line arguments can be used to supply the necessary parameters and to choose options.
+ 
+Input Mode
+ 
+Input mode is used to parse stand-alone HTML files. This is useful for files that were received via e-mail.
+ 
+Monitor Mode
+ 
+Monitor mode is used to monitor a URL for changes over time. If the contents of the URL changes, the new content is saved to a timestamped file and the timestamp is printed to the screen. Monitor mode will also record the host IP address. This would reveal DNS changes to redirect the exploit chain.
+ 
+WARNING: Use caution when selecting sleep values for monitor mode. You don't want to be accused of performing a Denial of Service attack against the website.
+ 
+Persistent Mode
+ 
+Persistent mode will keep the TCP Session open and allow multiple requests to be issued using the connection. This is useful for AJAX style content.
